@@ -45,10 +45,10 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - {{ stdlib("c") }}
-    - llvm-openmp  # [osx]
-    - libgomp      # [linux]
     - ninja
   host:
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
   # Will get nvcc linker warnings if the cudatoolkit version doesn't match
     - cuda-version {{ environ.get("cuda_compiler_version") }}.*  # [cuda_compiler_version != "None"]
 {% if cuda_major == 11 %}
