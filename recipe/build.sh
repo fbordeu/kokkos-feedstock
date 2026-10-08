@@ -3,22 +3,6 @@ set -ex
 mkdir build
 cd build
 
-
-echo "=== Kokkos CMake target exports ==="
-
-find "$PREFIX/lib/cmake" -type f \
-  \( -name '*Targets*.cmake' -o -name '*Config*.cmake' \) \
-  | grep -i kokkos
-
-grep -RnE \
-  'IMPORTED_(IMPLIB|LOCATION)|add_library\(Kokkos::' \
-  "$PREFIX/lib/cmake/Kokkos" \
-  "$PREFIX/lib/cmake/KokkosKernels" || true
-
-echo "=== Installed Kokkos libraries ==="
-ls -l "$PREFIX"/lib/libkokkos*.dylib
-
-
 cmake \
 -GNinja \
 -DCMAKE_BUILD_TYPE=Release \
